@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: dockerfile
     container_name: financial-transactions
     environment:
       - PORT=${PORT}
@@ -18,7 +18,7 @@ services:
     restart: always
     environment:
       - POSTGRES_PASSWORD=postgres
-    container_name: postgres
+    container_name: postgres-finance-organizer
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
