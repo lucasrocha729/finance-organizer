@@ -17,6 +17,8 @@ export class CreateTableExpenseCategory1694098284614
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
             isNullable: false,
           },
           {

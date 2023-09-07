@@ -10,7 +10,7 @@ export class CreateForeignKeyExpenseCategoryInFinancialTransactions1694098614523
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
-      'financial_transactions',
+      'financial_transaction',
       new TableColumn({
         name: 'category_id',
         type: 'uuid',
@@ -18,7 +18,7 @@ export class CreateForeignKeyExpenseCategoryInFinancialTransactions1694098614523
     );
 
     await queryRunner.createForeignKey(
-      'financial_transactions',
+      'financial_transaction',
       new TableForeignKey({
         columnNames: ['category_id'],
         referencedColumnNames: ['id'],

@@ -10,10 +10,17 @@ export class CreateTableUser1694048539973 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
             isNullable: false,
           },
           {
             name: 'name',
+            type: 'varchar',
+            isNullable: false,
+          },
+          {
+            name: 'login',
             type: 'varchar',
             isNullable: false,
           },

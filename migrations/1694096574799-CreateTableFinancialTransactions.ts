@@ -11,12 +11,14 @@ export class CreateTableFinancialTransactions1694096574799
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'financial_transactions',
+        name: 'financial_transaction',
         columns: [
           {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
             isNullable: false,
           },
           {
@@ -74,7 +76,7 @@ export class CreateTableFinancialTransactions1694096574799
     );
 
     await queryRunner.createForeignKey(
-      'financial_transactions',
+      'financial_transaction',
       new TableForeignKey({
         columnNames: ['user_id'],
         referencedColumnNames: ['id'],
@@ -85,7 +87,7 @@ export class CreateTableFinancialTransactions1694096574799
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('financial_transactions', 'user_id');
-    await queryRunner.dropTable('financial_transactions');
+    await queryRunner.dropForeignKey('financial_transaction', 'user_id');
+    await queryRunner.dropTable('financial_transaction');
   }
 }
