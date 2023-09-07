@@ -9,4 +9,5 @@ export const PostgresDataSource = new DataSource({
   database: 'finance-organizer',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   migrations: ['dist/migrations/*{.ts ,.js}'],
+  synchronize: false,
 });
