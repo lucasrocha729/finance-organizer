@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { FinancialTransactionsModule } from './financial-transactions/financial-transactions.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserManagementModule } from './user-management/user-management.module';
 
 @Module({
   imports: [
-    FinancialTransactionsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'db',
@@ -13,9 +13,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: 'postgres',
       database: 'finance-organizer',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-      autoLoadEntities: true,
+      synchronize: false,
+      migrations: ['dist/migrations/*{.ts ,.js}'],
     }),
+    FinancialTransactionsModule,
+    UserManagementModule,
   ],
   controllers: [],
   providers: [],
