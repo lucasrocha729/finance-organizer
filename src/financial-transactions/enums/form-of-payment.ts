@@ -1,4 +1,4 @@
 export enum FormOfPaymentEnum {
-  D = 'debit',
-  C = 'credit',
+  DEBIT = 'debit',
+  CREDIT = 'credit',
 }

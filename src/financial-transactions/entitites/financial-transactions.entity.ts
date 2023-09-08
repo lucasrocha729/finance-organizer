@@ -5,10 +5,10 @@ export class FinancialTransaction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: string;
 
-  @Column()
+  @Column({ name: 'category_id' })
   categoryId: string;
 
   @Column()
@@ -18,20 +18,20 @@ export class FinancialTransaction {
   value: number;
 
   @Column()
-  date: string;
+  date: Date;
 
-  @Column()
+  @Column({ name: 'form_of_payment' })
   formOfPayment: string;
 
   @Column()
   comment: string;
 
-  @Column()
+  @Column({ name: 'created_at' })
   createdAt: string;
 
-  @Column()
+  @Column({ name: 'updated_at' })
   updatedAt: string;
 
-  @Column()
+  @Column({ name: 'deleted_at' })
   deletedAt: string;
 }
