@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { FinancialTransactionsModule } from './financial-transactions/financial-transactions.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserManagementModule } from './user-management/user-management.module';
+import { ExpenseCategoryModule } from './expense_category/expense-category.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UserManagementModule } from './user-management/user-management.module';
     }),
     FinancialTransactionsModule,
     UserManagementModule,
+    ExpenseCategoryModule,
   ],
   controllers: [],
   providers: [],
