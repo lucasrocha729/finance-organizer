@@ -46,8 +46,7 @@ export class CreateTableExpenseCategory1694098284614
           {
             name: 'deleted_at',
             type: 'timestamp',
-            isNullable: false,
-            default: 'now()',
+            isNullable: true,
           },
         ],
       }),

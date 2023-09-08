@@ -70,8 +70,7 @@ export class CreateTableFinancialTransactions1694096574799
           {
             name: 'deleted_at',
             type: 'timestamp',
-            isNullable: false,
-            default: 'now()',
+            isNullable: true,
           },
         ],
       }),
