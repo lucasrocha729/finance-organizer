@@ -28,7 +28,8 @@ export class CreateTableFinancialTransactions1694096574799
           },
           {
             name: 'type',
-            type: 'varchar',
+            type: 'enum',
+            enum: ['outbox', 'entrybox'],
             isNullable: false,
           },
           {
@@ -45,7 +46,8 @@ export class CreateTableFinancialTransactions1694096574799
           },
           {
             name: 'form_of_payment',
-            type: 'varchar',
+            type: 'enum',
+            enum: ['debit', 'credit'],
             isNullable: false,
           },
           {

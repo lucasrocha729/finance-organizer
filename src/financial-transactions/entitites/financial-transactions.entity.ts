@@ -1,4 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { TransactionTypeEnum } from '../enums/transaction-type';
+import { FormOfPaymentEnum } from '../enums/form-of-payment';
 
 @Entity()
 export class FinancialTransaction {
@@ -11,8 +13,8 @@ export class FinancialTransaction {
   @Column({ name: 'category_id' })
   categoryId: string;
 
-  @Column()
-  type: string;
+  @Column({ type: 'enum', enum: TransactionTypeEnum })
+  type: TransactionTypeEnum;
 
   @Column()
   value: number;
@@ -20,8 +22,8 @@ export class FinancialTransaction {
   @Column()
   date: Date;
 
-  @Column({ name: 'form_of_payment' })
-  formOfPayment: string;
+  @Column({ name: 'form_of_payment', type: 'enum', enum: FormOfPaymentEnum })
+  formOfPayment: FormOfPaymentEnum;
 
   @Column()
   comment: string;

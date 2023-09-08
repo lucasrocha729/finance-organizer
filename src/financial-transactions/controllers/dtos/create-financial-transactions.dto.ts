@@ -6,7 +6,7 @@ import {
   IsOptional,
 } from 'class-validator';
 import { FormOfPaymentEnum } from 'src/financial-transactions/enums/form-of-payment';
-import { TransactionType } from 'src/financial-transactions/enums/transaction-type';
+import { TransactionTypeEnum } from 'src/financial-transactions/enums/transaction-type';
 
 export class FinancialTransactionDto {
   @IsString()
@@ -18,8 +18,8 @@ export class FinancialTransactionDto {
   categoryId: string;
 
   @IsNotEmpty()
-  @IsEnum(TransactionType)
-  type: string;
+  @IsEnum(TransactionTypeEnum)
+  type: TransactionTypeEnum;
 
   @IsNumber()
   @IsNotEmpty()
@@ -31,7 +31,7 @@ export class FinancialTransactionDto {
 
   @IsEnum(FormOfPaymentEnum)
   @IsOptional()
-  formOfPayment: string;
+  formOfPayment: FormOfPaymentEnum;
 
   @IsString()
   @IsOptional()
