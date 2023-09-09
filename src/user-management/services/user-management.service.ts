@@ -12,6 +12,7 @@ export class UserManagementService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    console.log(process.env.DB_URL);
     try {
       const test = this.userRepository.create(createUserDto);
 
