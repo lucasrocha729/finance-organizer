@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../models/user.entity';
 import { CreateUserDto } from '../dto/create-user-dto';
@@ -11,15 +11,17 @@ export class UserManagementService {
     private readonly userRepository: UserRepository,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    console.log(process.env.DB_URL);
-    try {
-      const test = this.userRepository.create(createUserDto);
+  async registerUser(createUserDto: CreateUserDto): Promise<string> {
+    const user = this.userRepository.create(createUserDto);
 
-      console.log(test);
-      await this.userRepository.save(test);
-    } catch (error) {
-      console.error(error);
+    const usersWithThisLogin = await this.userRepository.findBy([{ login: user.login }]);
+
+    if (usersWithThisLogin.length) {
+      throw new HttpException('Invalid login for account registration', HttpStatus.CONFLICT);
     }
+
+    await this.userRepository.save(user);
+
+    return 'User created with success';
   }
 }
