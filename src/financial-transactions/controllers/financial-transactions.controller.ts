@@ -4,14 +4,10 @@ import { FinancialTransactionDto } from './dtos/create-financial-transactions.dt
 
 @Controller('financial-transactions')
 export class FinancialTransactionsController {
-  constructor(
-    private readonly financialTransactionsService: FinancialTransactionsService,
-  ) {}
+  constructor(private readonly financialTransactionsService: FinancialTransactionsService) {}
 
   @Post()
   async create(@Body() createFinancialTransactions: FinancialTransactionDto) {
-    return this.financialTransactionsService.create(
-      createFinancialTransactions,
-    );
+    return this.financialTransactionsService.create(createFinancialTransactions);
   }
 }

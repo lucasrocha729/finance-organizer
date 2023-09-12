@@ -14,9 +14,7 @@ export class FinancialTransactionsService {
 
   async create(createFinancialTransactions: FinancialTransactionDto) {
     try {
-      const test = this.financialTransactionsRepository.create(
-        createFinancialTransactions,
-      );
+      const test = this.financialTransactionsRepository.create(createFinancialTransactions);
 
       console.log(test);
       await this.financialTransactionsRepository.save(test);
