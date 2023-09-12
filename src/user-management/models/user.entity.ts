@@ -14,12 +14,12 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ name: 'created_at' })
-  createdAt: string;
+  @Column({ name: 'created_at', nullable: true })
+  createdAt?: string;
 
-  @Column({ name: 'updated_at' })
-  updatedAt: string;
+  @Column({ name: 'updated_at', nullable: true })
+  updatedAt?: string;
 
-  @Column({ name: 'deleted_at' })
-  deletedAt: string;
+  @Column({ name: 'deleted_at', nullable: true })
+  deletedAt?: string;
 }

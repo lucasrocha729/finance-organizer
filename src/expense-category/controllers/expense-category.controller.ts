@@ -4,9 +4,7 @@ import { CreateExpenseCategoryDto } from '../dto/create-expense-category.dto';
 
 @Controller('expense-category')
 export class ExpenseCategoryController {
-  constructor(
-    private readonly expenseCategoryService: ExpenseCategoryService,
-  ) {}
+  constructor(private readonly expenseCategoryService: ExpenseCategoryService) {}
 
   @Post()
   async create(@Body() createExpenseCategoryDto: CreateExpenseCategoryDto) {

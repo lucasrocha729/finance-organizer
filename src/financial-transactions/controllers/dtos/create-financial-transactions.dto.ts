@@ -1,10 +1,4 @@
-import {
-  IsString,
-  IsNotEmpty,
-  IsNumber,
-  IsEnum,
-  IsOptional,
-} from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber, IsEnum, IsOptional } from 'class-validator';
 import { FormOfPaymentEnum } from 'src/financial-transactions/enums/form-of-payment';
 import { TransactionTypeEnum } from 'src/financial-transactions/enums/transaction-type';
 
