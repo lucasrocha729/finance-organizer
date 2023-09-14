@@ -13,10 +13,9 @@ export class ExpenseCategoryService {
 
   async create(createExpenseCategoryDto: CreateExpenseCategoryDto) {
     try {
-      const test = this.financialTransactionsRepository.create(createExpenseCategoryDto);
+      const expenseCategory = this.financialTransactionsRepository.create(createExpenseCategoryDto);
 
-      console.log(test);
-      await this.financialTransactionsRepository.save(test);
+      await this.financialTransactionsRepository.save(expenseCategory);
     } catch (error) {
       console.error(error);
     }
