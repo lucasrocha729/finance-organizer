@@ -8,6 +8,6 @@ export class ExpenseCategoryController {
 
   @Post()
   async create(@Body() createExpenseCategoryDto: CreateExpenseCategoryDto) {
-    return this.expenseCategoryService.create(createExpenseCategoryDto);
+    return this.expenseCategoryService.registerExpenseCategory(createExpenseCategoryDto);
   }
 }

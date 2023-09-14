@@ -11,7 +11,7 @@ export class ExpenseCategoryService {
     private readonly financialTransactionsRepository: ExpenseCategoryRepository,
   ) {}
 
-  async create(createExpenseCategoryDto: CreateExpenseCategoryDto) {
+  async registerExpenseCategory(createExpenseCategoryDto: CreateExpenseCategoryDto) {
     try {
       const expenseCategory = this.financialTransactionsRepository.create(createExpenseCategoryDto);
 
