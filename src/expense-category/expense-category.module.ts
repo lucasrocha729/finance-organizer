@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ExpenseCategoryService } from './services/expense-category.service';
 import { ExpenseCategoryController } from './controllers/expense-category.controller';
-import { ExpenseCategory } from './entitites/expense-category.entity';
+import { ExpenseCategory } from './models/expense-category.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

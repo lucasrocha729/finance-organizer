@@ -1,4 +1,4 @@
 import { Repository } from 'typeorm';
-import { ExpenseCategory } from '../entitites/expense-category.entity';
+import { ExpenseCategory } from '../models/expense-category.entity';
 
 export class ExpenseCategoryRepository extends Repository<ExpenseCategory> {}
