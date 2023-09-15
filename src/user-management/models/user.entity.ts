@@ -14,10 +14,10 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ name: 'created_at', nullable: true })
+  @Column({ name: 'created_at', nullable: true, default: 'now()' })
   createdAt?: string;
 
-  @Column({ name: 'updated_at', nullable: true })
+  @Column({ name: 'updated_at', nullable: true, default: 'now()' })
   updatedAt?: string;
 
   @Column({ name: 'deleted_at', nullable: true })
