@@ -3,7 +3,6 @@ import { ExpenseCategory } from '../models/expense-category.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateExpenseCategoryDto } from '../dto/create-expense-category.dto';
 import { ExpenseCategoryRepository } from '../repositories/expense-category.repository';
-import { DeleteExpenseCategoryDto } from '../dto/delete-expense-category.dto';
 
 @Injectable()
 export class ExpenseCategoryService {
@@ -31,9 +30,12 @@ export class ExpenseCategoryService {
     }
   }
 
-  async deleteExpenseCategory(deleteExpenseCategoryDto: DeleteExpenseCategoryDto): Promise<string> {
-    const id = deleteExpenseCategoryDto;
-    await this.financialTransactionsRepository.findOneBy(id);
+  async deleteExpenseCategory(id: string): Promise<string> {
+    const expenseCategory = await this.financialTransactionsRepository.findOneBy({ id });
+
+    if (!expenseCategory) {
+      throw new HttpException('Expense category not exist', HttpStatus.NOT_FOUND);
+    }
 
     await this.financialTransactionsRepository.delete(id);
 
