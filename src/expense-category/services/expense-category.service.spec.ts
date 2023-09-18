@@ -5,12 +5,15 @@ import { ExpenseCategory } from '../models/expense-category.entity';
 import { Repository } from 'typeorm';
 import { expenseCategoryMock } from '../mocks/expense-category.mock';
 import { createExpenseCategoryDtoMock } from '../mocks/create-expense-category-dto.mock';
+import { deleteExpenseCategoryDtoMock } from '../mocks/delete-expense-category-dto.mock';
 
 describe('ExpenseCategoryService', () => {
   let service: ExpenseCategoryService;
   let repository: Repository<ExpenseCategory>;
+
   let mockExpenseCategory = expenseCategoryMock();
   let mockCreateExpenseCategoryDto = createExpenseCategoryDtoMock();
+  let mockDeleteExpenseCategoryDto = deleteExpenseCategoryDtoMock();
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -28,6 +31,7 @@ describe('ExpenseCategoryService', () => {
 
     mockExpenseCategory = expenseCategoryMock();
     mockCreateExpenseCategoryDto = createExpenseCategoryDtoMock();
+    mockDeleteExpenseCategoryDto = deleteExpenseCategoryDtoMock();
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -77,5 +81,20 @@ describe('ExpenseCategoryService', () => {
 
     expect(findBy).toBeCalledTimes(1);
     expect(findBy).toBeCalledWith({ name: 'name mock', userId: 'userId-mock' });
+  });
+
+  it('should be returns that the record was deleted successfully ', async () => {
+    const spyFindByOne = jest.spyOn(repository, 'findOneBy').mockImplementation(() => Promise.resolve(mockExpenseCategory));
+    const spyDelete = jest.spyOn(repository, 'delete').mockResolvedValue({ raw: '', affected: 1 });
+
+    const response = await service.deleteExpenseCategory(mockDeleteExpenseCategoryDto);
+
+    expect(spyFindByOne).toBeCalledTimes(1);
+    expect(spyFindByOne).toBeCalledWith({ id: 'id-mock' });
+
+    expect(spyDelete).toBeCalledTimes(1);
+    expect(spyDelete).toBeCalledWith({ id: 'id-mock' });
+
+    expect(response).toBe('Expense category deleted with success');
   });
 });
