@@ -33,7 +33,4 @@ export class FinancialTransaction {
 
   @Column({ name: 'updated_at' })
   updatedAt: string;
-
-  @Column({ name: 'deleted_at' })
-  deletedAt: string;
 }

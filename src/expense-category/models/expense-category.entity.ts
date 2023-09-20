@@ -12,11 +12,8 @@ export class ExpenseCategory {
   name: string;
 
   @Column({ name: 'created_at', nullable: true, default: 'now()' })
-  createdAt?: string;
+  createdAt?: Date;
 
   @Column({ name: 'updated_at', nullable: true, default: 'now()' })
-  updatedAt?: string;
-
-  @Column({ name: 'deleted_at', nullable: true })
-  deletedAt?: string;
+  updatedAt?: Date;
 }

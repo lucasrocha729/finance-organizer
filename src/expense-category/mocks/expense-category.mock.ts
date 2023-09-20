@@ -4,7 +4,5 @@ export const expenseCategoryMock = (): ExpenseCategory => {
     id: 'id-mock',
     userId: 'userId-mock',
     name: 'name-mock',
-    createdAt: 'createdAt-mock',
-    updatedAt: 'updatedAt-mock',
   };
 };

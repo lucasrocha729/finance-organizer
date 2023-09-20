@@ -19,7 +19,4 @@ export class User {
 
   @Column({ name: 'updated_at', nullable: true })
   updatedAt?: string;
-
-  @Column({ name: 'deleted_at', nullable: true })
-  deletedAt?: string;
 }

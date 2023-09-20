@@ -1,13 +1,6 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
 
-export class CreateTableFinancialTransactions1694096574799
-  implements MigrationInterface
-{
+export class CreateTableFinancialTransactions1694096574799 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -66,11 +59,6 @@ export class CreateTableFinancialTransactions1694096574799
             type: 'timestamp',
             isNullable: false,
             default: 'now()',
-          },
-          {
-            name: 'deleted_at',
-            type: 'timestamp',
-            isNullable: true,
           },
         ],
       }),

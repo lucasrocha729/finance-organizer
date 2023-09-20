@@ -1,13 +1,6 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from 'typeorm';
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
 
-export class CreateTableExpenseCategory1694098284614
-  implements MigrationInterface
-{
+export class CreateTableExpenseCategory1694098284614 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -42,11 +35,6 @@ export class CreateTableExpenseCategory1694098284614
             type: 'timestamp',
             isNullable: false,
             default: 'now()',
-          },
-          {
-            name: 'deleted_at',
-            type: 'timestamp',
-            isNullable: true,
           },
         ],
       }),
