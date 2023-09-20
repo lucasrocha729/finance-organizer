@@ -12,22 +12,18 @@ export class ExpenseCategoryService {
   ) {}
 
   async registerExpenseCategory(createExpenseCategoryDto: CreateExpenseCategoryDto): Promise<ExpenseCategory> {
-    try {
-      const name = createExpenseCategoryDto.name.trim().toLocaleLowerCase();
-      const userId = createExpenseCategoryDto.userId;
+    const name = createExpenseCategoryDto.name.trim().toLocaleLowerCase();
+    const userId = createExpenseCategoryDto.userId;
 
-      const equalCategoryToUser = await this.financialTransactionsRepository.findBy({ name, userId });
+    const equalCategoryToUser = await this.financialTransactionsRepository.findBy({ name, userId });
 
-      if (equalCategoryToUser.length) {
-        throw new HttpException('Category already existing for the user', HttpStatus.CONFLICT);
-      }
-
-      const expenseCategory = this.financialTransactionsRepository.create(createExpenseCategoryDto);
-
-      return this.financialTransactionsRepository.save(expenseCategory);
-    } catch (error) {
-      console.error(error);
+    if (equalCategoryToUser.length) {
+      throw new HttpException('Category already existing for the user', HttpStatus.CONFLICT);
     }
+
+    const expenseCategory = this.financialTransactionsRepository.create(createExpenseCategoryDto);
+
+    return this.financialTransactionsRepository.save(expenseCategory);
   }
 
   async deleteExpenseCategory(id: string): Promise<string> {
