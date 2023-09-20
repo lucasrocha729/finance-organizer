@@ -1,4 +1,5 @@
-import { Controller, Body, Post, Delete, Param } from '@nestjs/common';
+import { UpdateExpenseCategoryDto } from './../dto/update-expense-category.dto';
+import { Controller, Body, Post, Delete, Param, Patch } from '@nestjs/common';
 import { ExpenseCategoryService } from '../services/expense-category.service';
 import { CreateExpenseCategoryDto } from '../dto/create-expense-category.dto';
 import { ExpenseCategory } from '../models/expense-category.entity';
@@ -20,6 +21,15 @@ export class ExpenseCategoryController {
   async delete(@Param('id') id: string): Promise<string> {
     try {
       return this.expenseCategoryService.deleteExpenseCategory(id);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  @Patch('update')
+  async update(@Body() updateExpenseCategoryDto: UpdateExpenseCategoryDto) {
+    try {
+      return this.expenseCategoryService.editExpenseCategory(updateExpenseCategoryDto);
     } catch (error) {
       console.error(error);
     }

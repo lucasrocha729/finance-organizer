@@ -3,6 +3,7 @@ import { ExpenseCategory } from '../models/expense-category.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateExpenseCategoryDto } from '../dto/create-expense-category.dto';
 import { ExpenseCategoryRepository } from '../repositories/expense-category.repository';
+import { UpdateExpenseCategoryDto } from '../dto/update-expense-category.dto';
 
 @Injectable()
 export class ExpenseCategoryService {
@@ -36,5 +37,18 @@ export class ExpenseCategoryService {
     await this.financialTransactionsRepository.delete(id);
 
     return 'Expense category deleted with success';
+  }
+
+  async editExpenseCategory(updateExpenseCategoryDto: UpdateExpenseCategoryDto) {
+    const id = updateExpenseCategoryDto.id;
+
+    const expenseCategory = await this.financialTransactionsRepository.findOneBy({ id });
+
+    const updatedRegister = await this.financialTransactionsRepository.update(expenseCategory.id, {
+      ...updateExpenseCategoryDto,
+      updatedAt: new Date(),
+    });
+
+    return updatedRegister;
   }
 }
