@@ -5,6 +5,7 @@ import { ExpenseCategory } from '../models/expense-category.entity';
 import { Repository } from 'typeorm';
 import { expenseCategoryMock } from '../mocks/expense-category.mock';
 import { createExpenseCategoryDtoMock } from '../mocks/create-expense-category-dto.mock';
+import { updateExpenseCategoryDtoMock } from '../mocks/update-expense-category-dto.mock';
 
 describe('ExpenseCategoryService', () => {
   let service: ExpenseCategoryService;
@@ -12,6 +13,7 @@ describe('ExpenseCategoryService', () => {
 
   let mockExpenseCategory = expenseCategoryMock();
   let mockCreateExpenseCategoryDto = createExpenseCategoryDtoMock();
+  let mockUpdateExpenseCategoryDtoMock = updateExpenseCategoryDtoMock();
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -29,6 +31,7 @@ describe('ExpenseCategoryService', () => {
 
     mockExpenseCategory = expenseCategoryMock();
     mockCreateExpenseCategoryDto = createExpenseCategoryDtoMock();
+    mockUpdateExpenseCategoryDtoMock = updateExpenseCategoryDtoMock();
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -103,5 +106,24 @@ describe('ExpenseCategoryService', () => {
       expect(e.status).toBeLessThan(500);
       expect(e.response).toEqual('Expense category not exist');
     });
+  });
+
+  it('should be returns new record when editing successfully', async () => {
+    const spyFindByOne = jest.spyOn(repository, 'findOneBy').mockImplementation(() => Promise.resolve(mockExpenseCategory));
+    const updateSpy = jest.spyOn(repository, 'update').mockImplementation(() =>
+      Promise.resolve({
+        generatedMaps: [],
+        raw: [],
+        affected: 1,
+      }),
+    );
+
+    await service.editExpenseCategory({ ...mockUpdateExpenseCategoryDtoMock, name: 'New name' });
+
+    expect(spyFindByOne).toBeCalledTimes(1);
+    expect(spyFindByOne).toBeCalledWith({ id: 'id-mock' });
+
+    expect(updateSpy).toBeCalledTimes(1);
+    expect(updateSpy).toBeCalledWith(mockExpenseCategory.id, { ...mockExpenseCategory, name: 'New name', updatedAt: new Date() });
   });
 });
